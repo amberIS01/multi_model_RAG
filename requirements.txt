@@ -1,0 +1,16 @@
+streamlit
+python-dotenv
+pymupdf
+pytesseract
+Pillow
+langchain
+langchain-community
+langchain-huggingface
+langchain-core
+faiss-cpu
+sentence-transformers
+transformers
+torch
+huggingface-hub
+pandas
+numpy
