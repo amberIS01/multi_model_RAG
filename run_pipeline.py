@@ -25,9 +25,12 @@ def main() -> None:
         ("python create_embeddings.py", "Creating embeddings"),
     ]
 
-    for command, description in steps:
+    total_steps = len(steps)
+    for i, (command, description) in enumerate(steps, 1):
+        print(f"\n[Step {i}/{total_steps}]")
         if not run_command(command, description):
-            print("\nPipeline failed. Please check the errors above.")
+            print(f"\nPipeline failed at step {i}/{total_steps}: {description}")
+            print("Please check the error messages above and fix the issue.")
             sys.exit(1)
 
     print("\n" + "=" * 50)
