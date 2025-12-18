@@ -1,9 +1,10 @@
 import json
 import os
+from typing import List, Dict, Any
 from vector_store import VectorStore
 import config
 
-def main():
+def main() -> None:
     print("STEP 2: Creating Embeddings")
     print()
     print()
