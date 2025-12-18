@@ -1,8 +1,9 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 import torch
+from typing import List, Dict, Any
 
 class LLMQA:
-    def __init__(self, model_name='google/flan-t5-base'):
+    def __init__(self, model_name: str = 'google/flan-t5-base') -> None:
         print(f"Loading LLM model: {model_name}")
 
         device = 0 if torch.cuda.is_available() else -1
@@ -35,7 +36,7 @@ Answer:"""
             print(f"Error loading model: {e}")
             raise
 
-    def generate_answer(self, query, context_chunks):
+    def generate_answer(self, query: str, context_chunks: List[Dict[str, Any]]) -> str:
         context_text = "\n\n".join([
             f"[Source: {chunk['source']}]\n{chunk['content'][:500]}"
             for chunk in context_chunks[:3]
@@ -56,7 +57,7 @@ Answer:"""
 
         return answer
 
-    def generate_answer_with_citations(self, query, search_results):
+    def generate_answer_with_citations(self, query: str, search_results: List[Dict[str, Any]]) -> Dict[str, Any]:
         context_chunks = [result['chunk'] for result in search_results]
 
         answer = self.generate_answer(query, context_chunks)
@@ -80,10 +81,10 @@ Answer:"""
 
 
 class SimpleQA:
-    def __init__(self):
+    def __init__(self) -> None:
         print("SimpleQA initialized (no LLM)")
 
-    def generate_answer_with_citations(self, query, search_results):
+    def generate_answer_with_citations(self, query: str, search_results: List[Dict[str, Any]]) -> Dict[str, Any]:
         if not search_results:
             return {
                 'answer': "No relevant information found in the document.",
