@@ -1,12 +1,13 @@
 import json
 import os
+from typing import List, Dict, Any
 from document_processor import DocumentProcessor
 import config
 
-def main():
-    print("="*70)
+def main() -> None:
+    print("=" * 50)
     print("STEP 1: Document Processing")
-    print("="*70)
+    print("=" * 50)
     
     config.create_directories()
     
