@@ -37,6 +37,10 @@ Answer:"""
             raise
 
     def generate_answer(self, query: str, context_chunks: List[Dict[str, Any]]) -> str:
+        max_query_length = 500
+        if len(query) > max_query_length:
+            query = query[:max_query_length]
+
         context_text = "\n\n".join([
             f"[Source: {chunk['source']}]\n{chunk['content'][:500]}"
             for chunk in context_chunks[:3]
