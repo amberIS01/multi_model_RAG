@@ -1,16 +1,17 @@
-import fitz  
+import fitz
 from PIL import Image
 import pytesseract
 import io
 import os
+from typing import List, Dict, Any, Optional
 
 class DocumentProcessor:
-    def __init__(self, pdf_path):
-        self.pdf_path = pdf_path
+    def __init__(self, pdf_path: str) -> None:
+        self.pdf_path: str = pdf_path
         self.doc = fitz.open(pdf_path)
-        
-    def extract_text_chunks(self):
-        chunks = []
+
+    def extract_text_chunks(self) -> List[Dict[str, Any]]:
+        chunks: List[Dict[str, Any]] = []
         
         for page_num in range(len(self.doc)):
             page = self.doc[page_num]
@@ -25,9 +26,9 @@ class DocumentProcessor:
                 })
         
         return chunks
-    
-    def extract_tables(self):
-        tables = []
+
+    def extract_tables(self) -> List[Dict[str, Any]]:
+        tables: List[Dict[str, Any]] = []
         
         for page_num in range(len(self.doc)):
             page = self.doc[page_num]
@@ -53,8 +54,8 @@ class DocumentProcessor:
                             })
         
         return tables
-    
-    def extract_images_with_ocr(self, output_folder=None):
+
+    def extract_images_with_ocr(self, output_folder: Optional[str] = None) -> List[Dict[str, Any]]:
         if output_folder is None:
             try:
                 import config
@@ -96,8 +97,8 @@ class DocumentProcessor:
                     print(f"OCR failed on page {page_num + 1}: {e}")
         
         return images_data
-    
-    def process_document(self):
+
+    def process_document(self) -> List[Dict[str, Any]]:
         print(f"Processing document: {self.pdf_path}")
         
         text_chunks = self.extract_text_chunks()
@@ -113,8 +114,8 @@ class DocumentProcessor:
         print(f" Total chunks: {len(all_chunks)}")
         
         return all_chunks
-    
-    def close(self):
+
+    def close(self) -> None:
         self.doc.close()
 
 if __name__ == "__main__":
