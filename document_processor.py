@@ -60,7 +60,7 @@ class DocumentProcessor:
             try:
                 import config
                 output_folder = config.IMAGES_DIR
-            except:
+            except ImportError:
                 output_folder = 'extracted_images'
         
         if not os.path.exists(output_folder):
@@ -84,7 +84,7 @@ class DocumentProcessor:
                 try:
                     img_pil = Image.open(io.BytesIO(image_bytes))
                     ocr_text = pytesseract.image_to_string(img_pil)
-                    
+
                     if ocr_text.strip():
                         images_data.append({
                             'type': 'image',
@@ -93,7 +93,7 @@ class DocumentProcessor:
                             'image_path': image_filename,
                             'source': f'Image on Page {page_num + 1}'
                         })
-                except Exception as e:
+                except (IOError, pytesseract.TesseractError) as e:
                     print(f"OCR failed on page {page_num + 1}: {e}")
         
         return images_data
