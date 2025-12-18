@@ -1,34 +1,39 @@
 import subprocess
 import sys
-import os
+from typing import List, Tuple
 
-def run_command(command, description):
+def run_command(command: str, description: str) -> bool:
+    print(f"\n{description}")
+    print("-" * 40)
     result = subprocess.run(command, shell=True)
-    
+
     if result.returncode != 0:
-        print(f"\nError")
+        print(f"Error: {description} failed")
         return False
-    
-    print(f"\nCompleted")
+
+    print(f"Completed: {description}")
     return True
 
-def main():
-    print()
+def main() -> None:
+    print("=" * 50)
     print("Multi-Modal RAG Pipeline")
-    print()
-    steps = [
-        ("python config.py", "Step 0: Creating directories"),
-        ("python process_document.py", "Step 1: Extracting document data"),
-        ("python create_embeddings.py", "Step 2: Creating embeddings"),
+    print("=" * 50)
+
+    steps: List[Tuple[str, str]] = [
+        ("python config.py", "Creating directories"),
+        ("python process_document.py", "Extracting document data"),
+        ("python create_embeddings.py", "Creating embeddings"),
     ]
-    
-    # Run all steps
+
     for command, description in steps:
         if not run_command(command, description):
-            print("\nPipeline failed")
+            print("\nPipeline failed. Please check the errors above.")
             sys.exit(1)
-    print()
+
+    print("\n" + "=" * 50)
     print("PIPELINE COMPLETE")
+    print("Run 'streamlit run app.py' to start the application")
+    print("=" * 50)
 
 if __name__ == "__main__":
     main()
