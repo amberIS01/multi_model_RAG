@@ -21,7 +21,7 @@ class LLMQA:
                 device=device
             )
 
-            self.prompt_template = """Based on the following context, answer the question. If the answer is not in the context, say "I cannot find this information in the document."
+            self.prompt_template = """You are a helpful assistant analyzing a document. Answer the question based only on the provided context. Be concise and accurate. If the information is not available in the context, say "This information is not found in the provided context."
 
 Context:
 {context}
