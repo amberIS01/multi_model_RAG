@@ -1,6 +1,9 @@
 import os
 from typing import List
 
+VERSION: str = "1.0.0"
+APP_NAME: str = "Multi-Modal RAG QA System"
+
 BASE_DIR: str = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR: str = os.path.join(BASE_DIR, 'data')
 
