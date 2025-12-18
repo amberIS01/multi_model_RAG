@@ -53,8 +53,15 @@ with st.sidebar:
             text_count = sum(1 for c in st.session_state.vector_store.chunks if c['type'] == 'text')
             table_count = sum(1 for c in st.session_state.vector_store.chunks if c['type'] == 'table')
             image_count = sum(1 for c in st.session_state.vector_store.chunks if c['type'] == 'image')
-        
-        
+
+            st.markdown("---")
+            st.subheader("Document Statistics")
+            st.metric("Total Chunks", total)
+            col1, col2, col3 = st.columns(3)
+            col1.metric("Text", text_count)
+            col2.metric("Tables", table_count)
+            col3.metric("Images", image_count)
+
         st.markdown("---")
         if st.button("Clear Chat History"):
             st.session_state.chat_history = []
