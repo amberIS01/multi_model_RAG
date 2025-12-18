@@ -5,7 +5,9 @@ from llm_qa import LLMQA, SimpleQA
 import config
 
 st.set_page_config(
-    page_title="RAG multi-model"
+    page_title="Multi-Modal RAG",
+    page_icon="📚",
+    layout="wide"
 )
 
 if 'vector_store' not in st.session_state:
