@@ -43,10 +43,10 @@ st.title(" Multi-Modal RAG ")
 st.markdown("Ask questions about the Qatar IMF Report")
 
 with st.sidebar:
-    st.header("file Status")
-    
+    st.header("System Status")
+
     if st.session_state.loaded:
-        st.success(" Ready to use ")
+        st.success("System Ready")
 
         if st.session_state.vector_store:
             total = len(st.session_state.vector_store.chunks)
@@ -61,27 +61,27 @@ with st.sidebar:
             st.rerun()
     
     else:
-        st.error(" Data Not Found!")
+        st.error("Data Not Loaded")
         st.markdown("---")
-        st.subheader(" Setup Required")
+        st.subheader("Setup Required")
         st.markdown("""
-        Please run the following commands:
-        
-        **Step 1: Process Document**
-        ```bash
-        python process_document.py
-        ```
-        
-        **Step 2: Create Embeddings**
-        ```bash
-        python create_embeddings.py
-        ```
-        
-        **Step 3: Restart App**
-        ```bash
-        streamlit run app.py
-        ```
-        """)
+Please run the following commands:
+
+**Step 1: Process Document**
+```bash
+python process_document.py
+```
+
+**Step 2: Create Embeddings**
+```bash
+python create_embeddings.py
+```
+
+**Step 3: Restart App**
+```bash
+streamlit run app.py
+```
+""")
         
 
 # Main chat interface
