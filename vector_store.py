@@ -18,6 +18,10 @@ class VectorStore:
         print("Embedding model loaded successfully")
         
     def create_embeddings(self, chunks: List[Dict[str, Any]]) -> None:
+        if not chunks:
+            print("No chunks provided for embedding")
+            return
+
         self.chunks = chunks
         documents: List[Document] = []
         for i, chunk in enumerate(chunks):
@@ -44,7 +48,13 @@ class VectorStore:
         if self.vectorstore is None:
             print("Vectorstore not created")
             return []
-        results = self.vectorstore.similarity_search_with_score(query, k=k)
+        if not query or not query.strip():
+            print("Empty query provided")
+            return []
+        if k < 1:
+            k = 1
+
+        results = self.vectorstore.similarity_search_with_score(query.strip(), k=k)
 
         formatted_results: List[Dict[str, Any]] = []
         for i, (doc, score) in enumerate(results):
