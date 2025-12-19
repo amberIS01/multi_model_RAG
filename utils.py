@@ -34,3 +34,21 @@ def count_chunks_by_type(chunks: List[Dict[str, Any]]) -> Dict[str, int]:
 def file_exists(filepath: str) -> bool:
     """Check if a file exists at the given path."""
     return os.path.exists(filepath) and os.path.isfile(filepath)
+
+
+def check_system_health() -> Dict[str, Any]:
+    """Check system health and return status."""
+    import config
+
+    status = {
+        'vector_store_exists': file_exists(f"{config.VECTOR_STORE_PATH}.faiss") or
+                               os.path.exists(os.path.join(config.VECTOR_STORE_PATH, "index.faiss")),
+        'chunks_exist': file_exists(config.CHUNKS_PATH),
+        'pdf_exists': file_exists(config.PDF_PATH),
+        'directories_exist': all(os.path.isdir(d) for d in [
+            config.DATA_DIR, config.RAW_DATA_DIR,
+            config.PROCESSED_DATA_DIR, config.VECTOR_STORE_DIR
+        ])
+    }
+    status['healthy'] = status['vector_store_exists'] and status['chunks_exist']
+    return status
