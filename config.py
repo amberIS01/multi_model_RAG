@@ -23,6 +23,9 @@ VECTOR_STORE_PATH: str = os.path.join(VECTOR_STORE_DIR, 'faiss_index')
 EMBEDDING_MODEL: str = 'sentence-transformers/all-MiniLM-L6-v2'
 LLM_MODEL: str = 'google/flan-t5-base'
 
+MAX_CHUNK_SIZE: int = 500
+MIN_CHUNK_SIZE: int = 50
+
 def create_directories() -> None:
     """Create all required directories for the application."""
     directories: List[str] = [
