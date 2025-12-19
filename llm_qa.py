@@ -105,13 +105,13 @@ class SimpleQA:
         top_chunks = search_results[:3]
 
         answer_parts = []
-        for result in top_chunks:
+        for i, result in enumerate(top_chunks, 1):
             chunk = result['chunk']
-            snippet = chunk['content'][:200].strip()
+            snippet = chunk['content'][:250].strip().replace('\n', ' ')
             if snippet:
-                answer_parts.append(f"From {chunk['source']}: {snippet}...")
+                answer_parts.append(f"**[{i}] {chunk['source']}:**\n{snippet}...")
 
-        answer = "\n\n".join(answer_parts) if answer_parts else "No relevant information found."
+        answer = "\n\n".join(answer_parts) if answer_parts else "No relevant information found in the document."
 
         citations = []
         for i, result in enumerate(top_chunks):
