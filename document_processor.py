@@ -11,9 +11,17 @@ from typing import List, Dict, Any, Optional
 
 class DocumentProcessor:
     """Processes PDF documents to extract text, tables, and images with OCR."""
+
     def __init__(self, pdf_path: str) -> None:
         self.pdf_path: str = pdf_path
         self.doc = fitz.open(pdf_path)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.close()
+        return False
 
     def extract_text_chunks(self) -> List[Dict[str, Any]]:
         chunks: List[Dict[str, Any]] = []
