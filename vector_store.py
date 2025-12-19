@@ -1,10 +1,15 @@
+"""
+Vector store module for managing embeddings and similarity search.
+"""
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 import pickle
 from typing import List, Dict, Any, Optional
 
+
 class VectorStore:
+    """Manages document embeddings using FAISS for similarity search."""
     def __init__(self, model_name: str = 'sentence-transformers/all-MiniLM-L6-v2') -> None:
         print(f"Loading embedding model: {model_name}")
         self.embeddings = HuggingFaceEmbeddings(
