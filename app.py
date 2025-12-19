@@ -142,10 +142,11 @@ if st.session_state.loaded:
                 })
 
 else:
-    st.info(" Follow steps")
-    
-    st.markdown("""
-    Step 1: python process_document.py
-    ### Step 2:python create_embeddings.py
-    ### Step 3:streamlit run app.py
-    """)
+    st.info("Please follow the setup steps in the sidebar")
+
+st.markdown("---")
+st.markdown(
+    f"<div style='text-align: center; color: gray;'>"
+    f"Multi-Modal RAG System v{config.VERSION}</div>",
+    unsafe_allow_html=True
+)
