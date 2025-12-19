@@ -18,6 +18,8 @@ if 'loaded' not in st.session_state:
     st.session_state.loaded = False
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
+if 'query_count' not in st.session_state:
+    st.session_state.query_count = 0
 
 if not st.session_state.loaded:
     faiss_file = os.path.join(config.VECTOR_STORE_PATH, "index.faiss")
@@ -117,8 +119,9 @@ if st.session_state.loaded:
     query = st.chat_input("Ask a question about the document...")
     
     if query:
+        st.session_state.query_count += 1
         st.session_state.chat_history.append({"role": "user", "content": query})
-        
+
         with st.chat_message("user"):
             st.markdown(query)
         
