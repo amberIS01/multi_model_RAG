@@ -1,3 +1,7 @@
+"""
+Configuration module for Multi-Modal RAG QA System.
+Contains all paths, model names, and system constants.
+"""
 import os
 from typing import List
 
@@ -20,6 +24,7 @@ EMBEDDING_MODEL: str = 'sentence-transformers/all-MiniLM-L6-v2'
 LLM_MODEL: str = 'google/flan-t5-base'
 
 def create_directories() -> None:
+    """Create all required directories for the application."""
     directories: List[str] = [
         DATA_DIR,
         RAW_DATA_DIR,
