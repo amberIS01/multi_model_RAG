@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+import json
 from vector_store import VectorStore
 from llm_qa import LLMQA, SimpleQA
 import config
@@ -72,10 +73,22 @@ with st.sidebar:
         st.caption(f"LLM: {config.LLM_MODEL.split('/')[-1]}")
 
         st.markdown("---")
-        if st.button("Clear Chat History"):
-            st.session_state.chat_history = []
-            st.rerun()
-    
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("Clear Chat"):
+                st.session_state.chat_history = []
+                st.session_state.query_count = 0
+                st.rerun()
+        with col2:
+            if st.session_state.chat_history:
+                chat_json = json.dumps(st.session_state.chat_history, indent=2)
+                st.download_button(
+                    "Export",
+                    chat_json,
+                    "chat_history.json",
+                    "application/json"
+                )
+
     else:
         st.error("Data Not Loaded")
         st.markdown("---")
