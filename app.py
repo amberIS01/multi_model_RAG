@@ -106,12 +106,12 @@ if st.session_state.loaded:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
             if "citations" in message:
-                with st.expander("📎 View Citations"):
-                    for cite in message["citations"]:
+                with st.expander(f"View {len(message['citations'])} Citations"):
+                    for i, cite in enumerate(message["citations"], 1):
+                        score_pct = (1 - cite['relevance_score']) * 100
                         st.markdown(
-                            f"**{cite['source']}** | "
-                            f"Type: {cite['type']} | "
-                            f"Relevance: {cite['relevance_score']:.3f}"
+                            f"**[{i}] {cite['source']}**  \n"
+                            f"Type: `{cite['type']}` | Relevance: {score_pct:.1f}%"
                         )
 
     query = st.chat_input("Ask a question about the document...")
