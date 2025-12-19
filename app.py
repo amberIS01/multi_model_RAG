@@ -41,8 +41,8 @@ if not st.session_state.loaded:
                 st.error(f"Error loading data: {e}")
                 st.session_state.loaded = False
 
-st.title(" Multi-Modal RAG ")
-st.markdown("Ask questions about the Qatar IMF Report")
+st.title("Multi-Modal RAG System")
+st.markdown("*Intelligent document Q&A powered by AI*")
 
 with st.sidebar:
     st.header("System Status")
