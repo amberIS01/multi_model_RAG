@@ -1,3 +1,6 @@
+"""
+Document processing module for extracting text, tables, and images from PDFs.
+"""
 import fitz
 from PIL import Image
 import pytesseract
@@ -5,7 +8,9 @@ import io
 import os
 from typing import List, Dict, Any, Optional
 
+
 class DocumentProcessor:
+    """Processes PDF documents to extract text, tables, and images with OCR."""
     def __init__(self, pdf_path: str) -> None:
         self.pdf_path: str = pdf_path
         self.doc = fitz.open(pdf_path)
