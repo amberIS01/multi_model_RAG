@@ -53,6 +53,16 @@ with st.sidebar:
     if st.session_state.loaded:
         st.success("System Ready")
 
+        st.markdown("---")
+        st.subheader("Try These Questions")
+        sample_qs = [
+            "What is the economic outlook?",
+            "What are the key recommendations?",
+            "Summarize the fiscal policy",
+        ]
+        for q in sample_qs:
+            st.caption(f"• {q}")
+
         if st.session_state.vector_store:
             total = len(st.session_state.vector_store.chunks)
             text_count = sum(1 for c in st.session_state.vector_store.chunks if c['type'] == 'text')
