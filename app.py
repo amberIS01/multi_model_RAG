@@ -65,6 +65,11 @@ with st.sidebar:
             col3.metric("Images", image_count)
 
         st.markdown("---")
+        st.subheader("Model Info")
+        st.caption(f"Embedding: {config.EMBEDDING_MODEL.split('/')[-1]}")
+        st.caption(f"LLM: {config.LLM_MODEL.split('/')[-1]}")
+
+        st.markdown("---")
         if st.button("Clear Chat History"):
             st.session_state.chat_history = []
             st.rerun()
