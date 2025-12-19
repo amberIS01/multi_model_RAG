@@ -1,8 +1,13 @@
+"""
+Question answering module using LLM for generating responses.
+"""
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 import torch
 from typing import List, Dict, Any
 
+
 class LLMQA:
+    """LLM-based question answering system with citation support."""
     def __init__(self, model_name: str = 'google/flan-t5-base') -> None:
         print(f"Loading LLM model: {model_name}")
 
@@ -85,6 +90,8 @@ Answer:"""
 
 
 class SimpleQA:
+    """Simple QA fallback without LLM for basic document retrieval."""
+
     def __init__(self) -> None:
         print("SimpleQA initialized (no LLM)")
 
