@@ -31,6 +31,7 @@ MAX_CHAT_HISTORY: int = 50
 MAX_OUTPUT_TOKENS: int = 512
 MAX_QUERY_LENGTH: int = 500
 MAX_CONTEXT_CHUNKS: int = 3
+MAX_CITATIONS: int = 3
 
 def create_directories() -> None:
     """Create all required directories for the application."""
