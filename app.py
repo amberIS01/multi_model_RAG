@@ -1,3 +1,6 @@
+"""
+Streamlit web application for the Multi-Modal RAG QA System.
+"""
 import streamlit as st
 import os
 import json
