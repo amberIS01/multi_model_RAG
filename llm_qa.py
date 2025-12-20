@@ -42,6 +42,7 @@ Answer:"""
             raise
 
     def generate_answer(self, query: str, context_chunks: List[Dict[str, Any]]) -> str:
+        """Generate an answer based on query and context chunks."""
         max_query_length = 500
         if len(query) > max_query_length:
             query = query[:max_query_length]
@@ -67,6 +68,7 @@ Answer:"""
         return answer
 
     def generate_answer_with_citations(self, query: str, search_results: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Generate answer with source citations from search results."""
         context_chunks = [result['chunk'] for result in search_results]
 
         answer = self.generate_answer(query, context_chunks)
