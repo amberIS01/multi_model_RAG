@@ -44,6 +44,16 @@ def get_file_size(filepath: str) -> str:
     return format_file_size(size)
 
 
+def validate_query(query: str, max_length: int = 500) -> str:
+    """Validate and clean query string."""
+    if not query:
+        return ""
+    cleaned = query.strip()
+    if len(cleaned) > max_length:
+        cleaned = cleaned[:max_length]
+    return cleaned
+
+
 def check_system_health() -> Dict[str, Any]:
     """Check system health and return status."""
     import config
