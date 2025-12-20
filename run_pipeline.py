@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import time
 from typing import List, Tuple
 
 def run_command(command: str, description: str) -> bool:
@@ -15,6 +16,7 @@ def run_command(command: str, description: str) -> bool:
     return True
 
 def main() -> None:
+    start_time = time.time()
     print("=" * 50)
     print("Multi-Modal RAG Pipeline")
     print("=" * 50)
@@ -33,8 +35,10 @@ def main() -> None:
             print("Please check the error messages above and fix the issue.")
             sys.exit(1)
 
+    elapsed = time.time() - start_time
     print("\n" + "=" * 50)
     print("PIPELINE COMPLETE")
+    print(f"Total time: {elapsed:.1f} seconds")
     print("Run 'streamlit run app.py' to start the application")
     print("=" * 50)
 
