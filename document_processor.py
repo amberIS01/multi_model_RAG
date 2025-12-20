@@ -117,7 +117,8 @@ class DocumentProcessor:
     def process_document(self) -> List[Dict[str, Any]]:
         """Process entire document and return all extracted chunks."""
         print(f"Processing document: {self.pdf_path}")
-        
+        print(f"Total pages: {len(self.doc)}")
+
         text_chunks = self.extract_text_chunks()
         print(f"Extracted {len(text_chunks)} text chunks")
         
