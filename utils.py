@@ -36,6 +36,14 @@ def file_exists(filepath: str) -> bool:
     return os.path.exists(filepath) and os.path.isfile(filepath)
 
 
+def get_file_size(filepath: str) -> str:
+    """Get formatted file size for a given path."""
+    if not file_exists(filepath):
+        return "N/A"
+    size = os.path.getsize(filepath)
+    return format_file_size(size)
+
+
 def check_system_health() -> Dict[str, Any]:
     """Check system health and return status."""
     import config
