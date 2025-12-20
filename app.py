@@ -139,7 +139,7 @@ if st.session_state.loaded:
                             f"Type: `{cite['type']}` | Relevance: {score_pct:.1f}%"
                         )
 
-    query = st.chat_input("Ask a question about the document...")
+    query = st.chat_input("Type your question here (e.g., What is the economic outlook?)")
     
     if query:
         st.session_state.query_count += 1
