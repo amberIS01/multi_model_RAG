@@ -21,6 +21,7 @@ CHUNKS_PATH: str = os.path.join(PROCESSED_DATA_DIR, 'extracted_chunks.json')
 VECTOR_STORE_PATH: str = os.path.join(VECTOR_STORE_DIR, 'faiss_index')
 
 EMBEDDING_MODEL: str = 'sentence-transformers/all-MiniLM-L6-v2'
+EMBEDDING_DIMENSION: int = 384
 LLM_MODEL: str = 'google/flan-t5-base'
 
 MAX_CHUNK_SIZE: int = 500
