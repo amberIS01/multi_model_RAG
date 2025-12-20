@@ -28,6 +28,8 @@ MIN_CHUNK_SIZE: int = 50
 DEFAULT_SEARCH_RESULTS: int = 5
 MAX_SEARCH_RESULTS: int = 10
 MAX_CHAT_HISTORY: int = 50
+MAX_OUTPUT_TOKENS: int = 512
+MAX_QUERY_LENGTH: int = 500
 
 def create_directories() -> None:
     """Create all required directories for the application."""
