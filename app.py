@@ -126,7 +126,10 @@ streamlit run app.py
 # Main chat interface
 if st.session_state.loaded:
     st.markdown("---")
- 
+
+    if not st.session_state.chat_history:
+        st.info("Welcome! Ask any question about the document and I'll find the relevant information.")
+
     for message in st.session_state.chat_history:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
