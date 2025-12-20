@@ -24,8 +24,9 @@ class DocumentProcessor:
         return False
 
     def extract_text_chunks(self) -> List[Dict[str, Any]]:
+        """Extract text content from each page of the PDF."""
         chunks: List[Dict[str, Any]] = []
-        
+
         for page_num in range(len(self.doc)):
             page = self.doc[page_num]
             text = page.get_text()
@@ -41,8 +42,9 @@ class DocumentProcessor:
         return chunks
 
     def extract_tables(self) -> List[Dict[str, Any]]:
+        """Extract table-like content from PDF using block analysis."""
         tables: List[Dict[str, Any]] = []
-        
+
         for page_num in range(len(self.doc)):
             page = self.doc[page_num]
             
@@ -69,6 +71,7 @@ class DocumentProcessor:
         return tables
 
     def extract_images_with_ocr(self, output_folder: Optional[str] = None) -> List[Dict[str, Any]]:
+        """Extract images from PDF and perform OCR to get text content."""
         if output_folder is None:
             try:
                 import config
@@ -112,6 +115,7 @@ class DocumentProcessor:
         return images_data
 
     def process_document(self) -> List[Dict[str, Any]]:
+        """Process entire document and return all extracted chunks."""
         print(f"Processing document: {self.pdf_path}")
         
         text_chunks = self.extract_text_chunks()
