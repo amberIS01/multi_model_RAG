@@ -23,6 +23,7 @@ class VectorStore:
         print("Embedding model loaded successfully")
         
     def create_embeddings(self, chunks: List[Dict[str, Any]]) -> None:
+        """Create embeddings for chunks and build FAISS index."""
         if not chunks:
             print("No chunks provided for embedding")
             return
@@ -50,6 +51,7 @@ class VectorStore:
         print(f"FAISS index with {len(documents)} vectors")
 
     def search(self, query: str, k: int = 5) -> List[Dict[str, Any]]:
+        """Search for similar chunks based on query."""
         if self.vectorstore is None:
             print("Vectorstore not created")
             return []
@@ -77,6 +79,7 @@ class VectorStore:
         return formatted_results
 
     def save(self, filepath: str = 'vector_store') -> None:
+        """Save vector store and chunks to disk."""
         if self.vectorstore is None:
             print("No vectorstore to save")
             return
@@ -86,6 +89,7 @@ class VectorStore:
             pickle.dump(self.chunks, f)
 
     def load(self, filepath: str = 'vector_store') -> None:
+        """Load vector store and chunks from disk."""
         self.vectorstore = FAISS.load_local(
             filepath,
             self.embeddings,
