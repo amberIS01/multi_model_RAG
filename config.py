@@ -32,6 +32,7 @@ MAX_OUTPUT_TOKENS: int = 512
 MAX_QUERY_LENGTH: int = 500
 MAX_CONTEXT_CHUNKS: int = 3
 MAX_CITATIONS: int = 3
+DEBUG_MODE: bool = False
 
 def create_directories() -> None:
     """Create all required directories for the application."""
