@@ -98,6 +98,7 @@ class SimpleQA:
         print("SimpleQA initialized (no LLM)")
 
     def generate_answer_with_citations(self, query: str, search_results: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Return relevant document snippets as answer with citations."""
         if not search_results:
             return {
                 'answer': "No relevant information found in the document.",
