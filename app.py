@@ -149,7 +149,7 @@ if st.session_state.loaded:
             st.markdown(query)
         
         with st.chat_message("assistant"):
-            with st.spinner("Searching and generating answer..."):
+            with st.spinner("Analyzing document and generating response..."):
                 search_results = st.session_state.vector_store.search(query, k=5)
                 
                 result = st.session_state.qa_system.generate_answer_with_citations(
